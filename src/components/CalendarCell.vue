@@ -4,11 +4,14 @@ v-card.cell-wrapper(
   tile
   flat)
   div(:bind="{holiday:isHoliday,saturday:isSaturday}") {{day}}
+  badge(value="12" color="red")
 </template>
 
 <script lang="ts">
 import { reactive, defineComponent } from '@vue/composition-api'
+import Badge from './badges/Badge.vue'
 export default defineComponent({
+  components: { Badge },
   props: {
     day: {},
     isSaturday: {
