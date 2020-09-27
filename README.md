@@ -1,24 +1,42 @@
-# badege-calendar
+calendarに数値を表示できます
 
-## Project setup
-```
-yarn install
-```
+# Usage
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## npm
 
-### Compiles and minifies for production
 ```
-yarn build
+yarn add point-calendar
+```
+```
+npm install point-calendar
 ```
 
-### Lints and fixes files
-```
-yarn lint
-```
+## GitHub Package Registry
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+```
+<template lang="pug">
+#app
+  point-calendar(
+    :month="state.date"
+    :cells="state.cells"
+  )
+</template>
+<script lang="ts">
+import { reactive, defineComponent } from '@vue/composition-api'
+import moment from 'moment'
+import PointCalendar from '@/components/PointCalendar.vue'
+export default defineComponent({
+  components: { PointCalendar },
+  setup(props) {
+    const date = moment(Date.now()).toDate()
+    const cells = [
+      { day: 1, badges: [{ color: 'blue', value: 12 }] },
+      { day: 2, badges: [{ color: 'blue', value: 12 }] }
+    ]
+    const state = reactive({ date, cells })
+    return { state }
+  }
+})
+</script>
+
+```
