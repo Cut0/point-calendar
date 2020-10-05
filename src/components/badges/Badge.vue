@@ -1,5 +1,5 @@
 <template lang="pug">
-div.badge-wrapper(:style="{ 'background-color': color}") 
+.badge-wrapper(:style="{ 'background-color': color}") 
   span.value {{value}}
 </template>
 <script lang="ts">
@@ -17,8 +17,8 @@ export default defineComponent({
 }
 .badge-wrapper {
   height: 18px;
-  margin: 2px 12px;
-  border-radius: 4px !important;
+  width: 100%;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;

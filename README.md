@@ -11,7 +11,7 @@ yarn add point-calendar
 npm install point-calendar
 ```
 
-## GitHub Package Registry
+## How to Use
 
 ```
 <template lang="pug">

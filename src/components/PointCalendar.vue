@@ -1,19 +1,20 @@
 <template lang="pug">
-v-container#point-calendar
-  span {{state.title}}
-  v-row(no-gutters)
-    v-col(v-for="(dayName,index) in ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']")
-      span {{dayName}}
-  v-row(no-gutters v-for="n in state.weekCount")
-    v-col(v-for="(params,index) in state.cells.slice((n-1)*7,n*7)")
-      calendar-cell(:cell="params")
+b-container#point-calendar
+  span.title {{state.title}}
+  b-container
+    b-row
+      b-col(v-for="(dayName,index) in ['日', '月', '火', '水', '木', '金', '土']")
+        span {{dayName}}
+  b-container.calendar
+    b-row(v-for="n in state.weekCount")
+      b-col.cell(v-for="(params,index) in state.cells.slice((n-1)*7,n*7)")
+        calendar-cell(:cell="params")
 </template>
 <script lang="ts">
 import { Cell } from '@/types'
 import { reactive, defineComponent } from '@vue/composition-api'
 import CalendarCell from '@/components/CalendarCell.vue'
 import moment from 'moment'
-
 function getDaysArray(year: number, month: number, cells: Cell[]) {
   const names = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
   const date = new Date(year, month - 1, 1)
@@ -34,7 +35,6 @@ function getDaysArray(year: number, month: number, cells: Cell[]) {
     result.push({ day: '', dayOfTheWeek: names[date.getDay()] })
   return result
 }
-
 export default defineComponent({
   components: { CalendarCell },
   props: {
@@ -70,5 +70,14 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+.title {
+  font-size: 24px;
+}
+.calendar {
+  border: 0.1px solid #9099a2;
+}
+.cell {
+  border: 0.1px solid #9099a2;
 }
 </style>

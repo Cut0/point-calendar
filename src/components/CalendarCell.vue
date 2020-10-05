@@ -1,10 +1,7 @@
 <template lang="pug">
-v-card.cell-wrapper(
-  outlined
-  tile
-  flat)
+.cell-wrapper
   div(:bind="{holiday:isHoliday,saturday:isSaturday}") {{cell.day}}
-  template(v-for="badge in cell.badges")
+  .badges-cover(v-for="badge in cell.badges")
     badge(:value="badge.value" :color="badge.color")
 </template>
 
@@ -31,6 +28,11 @@ export default defineComponent({
 .cell-wrapper {
   height: 80px;
   text-align: center;
+}
+.badges-cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .saturday {
   color: blue;
